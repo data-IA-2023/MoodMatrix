@@ -3,7 +3,8 @@
 classe :
     DB
 methode :
-    dict_new_data, session => entrée : dict, fonction : ajout dans la bd
+    connectBd() => sortie : return dict_connection ou print error
+    set_bd ( dict_new_data, session ) => entrée : dict, fonction : ajout dans la bd
     get_bd ( value, session, engine ) => sortie : return df ou print error, fonction : réccupaire dans la bd
 =========================================
 """
@@ -55,20 +56,24 @@ def connectBd():
         return dict_connection
     except Exception as e :
         print("error :", e)
+
+# teste :
+# dict = createsession ()
+# print (dict)
     
 # =======================    ajout à la base de données    =======================
 
 def set_bd ( dict_new_data, session ) :
     """
     dict_new_data = { texte : "", sentiment : "", resultat : "", feedBack : "", 
-    statusAnalys : "", codeErrorAnalys : "", statusChatBot : "", 
-    codeErrorChatBot : "", statusResult : "", codeErrorResult : "" }
+                     statusAnalys : "", codeErrorAnalys : "", statusChatBot : "", 
+                     codeErrorChatBot : "", statusResult : "", codeErrorResult : "" }
     """
 
     # ========== traitement du monitoring ==========
     
     monitoring = Monitoring(
-        statusAnalys = dict_new_data['dict_new_data'],
+        statusAnalys = dict_new_data['statusAnalys'],
         codeErrorAnalys = dict_new_data['codeErrorAnalys'],
         statusChatBot = dict_new_data['statusChatBot'],
         codeErrorChatBot = dict_new_data['codeErrorChatBot'],
@@ -101,14 +106,14 @@ def set_bd ( dict_new_data, session ) :
 def get_bd ( value, session, engine ) :
 
     if value == "monitoring" :
-        df_query = session.query(Monitoring).order_by(Monitoring.dateMonitoring)
+        df_query = session.query(Monitoring)
         
         df = pd.read_sql( sql=df_query.statement, con=engine )
 
         return df
     
     elif value == "historique" :
-        df_query = session.query(Historiques).order_by(Historiques.dateMonitoring)
+        df_query = session.query(Historiques)
         
         df = pd.read_sql( sql=df_query.statement, con=engine )
 

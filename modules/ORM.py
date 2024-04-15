@@ -61,20 +61,23 @@ def createsession():
 # tous les modèles en hérite
 Base = declarative_base()
 
+# teste :
+# dict = createsession()
+# print(dict)
 
 # =======================    classe des classe de la base de données    =======================
 
 # clase pour la table historiques
 class Historiques ( Base ):
     __tablename__ = "historiques"
-    __table_args__ = {'schema': 'dbo'}
+    # __table_args__ = {'schema': 'dbo'}
 
     idTexte = Column(Integer, primary_key=True, autoincrement=True)
     texte = Column(VARCHAR())
     sentiment = Column(VARCHAR())
     resultat = Column(VARCHAR())
     feedBack = Column(Boolean)
-    idMonitoring = Column(Integer, ForeignKey('dbo.monitoring.idMonitoring'))  # Spécification du schéma
+    idMonitoring = Column(Integer, ForeignKey('monitoring.idMonitoring'))  # Spécification du schéma
 
     # Définir la relation avec la table "Monitoring"
     monitoring = relationship("Monitoring", back_populates="historiques")
@@ -82,7 +85,7 @@ class Historiques ( Base ):
 # clase pour la table monitoring
 class Monitoring ( Base ):
     __tablename__ = "monitoring"
-    __table_args__ = {'schema': 'dbo'}
+    # __table_args__ = {'schema': 'dbo'}
 
     idMonitoring = Column(Integer, primary_key=True, autoincrement=True)
     statusAnalys = Column(String(50))
