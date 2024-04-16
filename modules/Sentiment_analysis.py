@@ -44,7 +44,7 @@ def translate_and_analyse(text):
     """
     trad=translate_to_en(text)
     emo=emotion_analysis(trad['textTraduie'])[0]['label']
-    print(type(emo),emo)
+    #print(type(emo),emo)
     
     return {'text':text,'traduction':trad['textTraduie'], "emotion" : emo, "langue" : trad["langue"], 'emoticon':sentiment_to_emoticon(emo)}
 
