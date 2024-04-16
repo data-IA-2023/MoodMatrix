@@ -1,0 +1,4 @@
+TensorFlow
+tf-keras
+deep_translator
+transformers
