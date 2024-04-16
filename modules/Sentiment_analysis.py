@@ -1,5 +1,6 @@
 import deep_translator  # Importation de la bibliothèque pour la traduction
 from transformers import RobertaTokenizerFast, TFRobertaForSequenceClassification, pipeline  # Importation des composants de Hugging Face Transformers
+from langdetect import detect  # Importation de la fonction detect de la bibliothèque langdetect
 
 # Initialisation du tokenizer pour RoBERTa
 tokenizer = RobertaTokenizerFast.from_pretrained("arpanghoshal/EmoRoBERTa")
@@ -22,8 +23,10 @@ def translate_to_en(text=""):
     Returns:
         str: Le texte traduit en anglais.
     """
-    translated_text = deep_translator.GoogleTranslator(source='fr', target='en').translate(text)
-    return translated_text
+    # Détection de la langue du texte en français
+    langue=detect(text)
+    translated_text = deep_translator.GoogleTranslator(source=langue, target='en').translate(text)
+    return {'langue': langue, 'textTraduie':translated_text}
 
 # Fonction pour traduire un texte en anglais et l'analyser pour l'émotion
 def translate_and_analyse(text):
@@ -38,7 +41,8 @@ def translate_and_analyse(text):
         Voici la liste des emotions possible:
         admiration,amusement,anger,annoyance,approval,caring,confusion,curiosity,desire,disappointment,disapproval,disgust,embarrassment,excitement,fear,gratitude,grief,oy,love,nervousness,optimism,pride,realization,relief,remorse,sadness,surprise,neutral
     """
-    return emotion_analysis(translate_to_en(text))[0]
+    trad=translate_to_en(text)
+    return {"emotion" : emotion_analysis(trad['textTraduie'])[0] , "langue" : trad["langue"]}
 
 def sentiment_to_emoticon(sentiment):
     """
@@ -89,5 +93,5 @@ if __name__ == "__main__":
     # Exemple d'utilisation de la fonction translate_and_analyse avec le texte "Je t'aime."
     emotion_labels = translate_and_analyse("c'est incroiyable.")
     print(emotion_labels)
-    emoticon_emoticon = sentiment_to_emoticon(emotion_labels['label'])
+    emoticon_emoticon = sentiment_to_emoticon(emotion_labels["emotion"]['label'])
     print(emoticon_emoticon)
