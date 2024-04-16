@@ -24,7 +24,7 @@ neo GPT : Basé sur chatGPT 3.5, ce chatbot n'est pas disponible gratuitement.
 
 Choix : Mistral IA
 
-### Comparaison des outils NLP d'analyse de sentiment :
+### Comparaison des outils NLP d'analyse de sentiment/émotion :
 
 VADER (Valence Aware Dictionary and sEntiment Reasoner) : VADER est un outil d'analyse de sentiment basé sur des règles et conçu pour analyser les sentiments exprimés dans du texte social. Il est souvent utilisé pour l'analyse de sentiment dans les médias sociaux. Python : nltk.sentiment.vader.
 
