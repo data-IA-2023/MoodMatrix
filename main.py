@@ -76,14 +76,17 @@ dict_resultat = { "texte" : "", "sentiment" : "", "resultat" : "", "feedBack" : 
 # =======================    enregistre le resultat à la base de donnée     =======================
 
 """
-dict_resultat = { texte : "", sentiment : "", resultat : "", feedBack : "", 
-                 statusAnalys : "", codeErrorAnalys : "", statusChatBot : "", 
-                 codeErrorChatBot : "", statusResult : "", codeErrorResult : "" }
+dict_resultat = { "texte" : "", "sentiment" : "", "resultat" : "", "feedBack" : False, 
+                 "statusAnalys" : "", "codeErrorAnalys" : "", "statusChatBot" : "", 
+                 "codeErrorChatBot" : "", "statusResult" : "", "codeErrorResult" : "" }
 """
 # set_bd ( dict_resultat, session)
 
 # =======================    réccupère infos de la base de donnée     =======================
+df_historique = None
 df_historique = get_bd ( "historique", session, engine )
 print('df_historique :', df_historique)
+
+df_monitoring = None
 df_monitoring = get_bd ( "monitoring", session, engine )
 print('df_monitoring :', df_monitoring)

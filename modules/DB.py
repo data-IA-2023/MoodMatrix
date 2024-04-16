@@ -100,6 +100,13 @@ def set_bd ( dict_new_data, session ) :
     session.add(historiques)
     session.commit()
 
+# teste :
+# dict = createsession ()
+# print (dict)
+# dict_new_data = { "texte" : "Je suis très joyeuse aujourd'huis", "sentiment" : "positif", "resultat" : "Pour quoi ?", "feedBack" : True, 
+#                  "statusAnalys" : "success", "codeErrorAnalys" : "", "statusChatBot" : "success", 
+#                  "codeErrorChatBot" : "", "statusResult" : "success", "codeErrorResult" : "" }
+# set_bd ( dict_new_data, dict['session'] )
 
 # =======================    réccupère la base de données    =======================
 
@@ -121,3 +128,21 @@ def get_bd ( value, session, engine ) :
     
     else :
         print("error : la requette n'ai pas valide")
+
+# teste :
+# dict = createsession ()
+# print (dict)
+# session = dict['session']
+# engine = dict['engine']
+# dict_new_data = { "texte" : "Je suis très joyeuse aujourd'huis", "sentiment" : "positif", "resultat" : "Pour quoi ?", "feedBack" : True, 
+#                  "statusAnalys" : "success", "codeErrorAnalys" : "", "statusChatBot" : "success", 
+#                  "codeErrorChatBot" : "", "statusResult" : "success", "codeErrorResult" : "" }
+# set_bd ( dict_new_data, session )
+
+# df_historique = None
+# df_historique = get_bd ( "historique", session, engine )
+# print('df_historique :', df_historique)
+
+# df_monitoring = None
+# df_monitoring = get_bd ( "monitoring", session, engine )
+# print('df_monitoring :', df_monitoring)
