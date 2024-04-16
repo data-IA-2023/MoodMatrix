@@ -1,3 +1,4 @@
+# Ce module est compatible avec python 3.10, 3.11 et 3.12.
 import deep_translator  # Importation de la bibliothèque pour la traduction
 from transformers import RobertaTokenizerFast, TFRobertaForSequenceClassification, pipeline  # Importation des composants de Hugging Face Transformers
 from langdetect import detect  # Importation de la fonction detect de la bibliothèque langdetect
