@@ -40,9 +40,54 @@ def translate_and_analyse(text):
     """
     return emotion_analysis(translate_to_en(text))[0]
 
+def sentiment_to_emoticon(sentiment):
+    """
+    Cette fonction prend un sentiment en entrée et renvoie une émoticône équivalente.
+
+    Args:
+        sentiment (str): Le sentiment à traduire en émoticône.
+
+    Returns:
+        str: L'émoticône équivalente au sentiment. Si aucun sentiment correspondant n'est trouvé, la fonction renvoie None.
+    """
+    emoticon_dict = {
+        "admiration": "😍",
+        "amusement": "😄",
+        "anger": "😠",
+        "annoyance": "😒",
+        "approval": "👍",
+        "caring": "❤️",
+        "confusion": "😕",
+        "curiosity": "🤔",
+        "desire": "😏",
+        "disappointment": "😞",
+        "disapproval": "👎",
+        "disgust": "🤢",
+        "embarrassment": "😳",
+        "excitement": "😃",
+        "fear": "😨",
+        "gratitude": "🙏",
+        "grief": "😢",
+        "joy": "😊",
+        "love": "😍",
+        "nervousness": "😬",
+        "optimism": "😊",
+        "pride": "😊",
+        "realization": "😲",
+        "relief": "😌",
+        "remorse": "😔",
+        "sadness": "😔",
+        "surprise": "😮",
+        "neutral": "😐"
+    }
+
+    return emoticon_dict.get(sentiment.lower(), None)
+
+
+
 if __name__ == "__main__":
     # Exemple d'utilisation de la fonction translate_and_analyse avec le texte "Je t'aime."
-    emotion_labels = translate_and_analyse("Je t'aime.")
+    emotion_labels = translate_and_analyse("c'est incroiyable.")
     print(emotion_labels)
-
-
+    emoticon_emoticon = sentiment_to_emoticon(emotion_labels['label'])
+    print(emoticon_emoticon)
