@@ -38,7 +38,9 @@ def translate_and_analyse(text):
 
     Returns:
         dict: Un dictionnaire contenant le texte d'origine, sa traduction en anglais, l'émotion détectée, 
-              la langue d'origine et une émoticône correspondant à l'émotion détectée.
+              la langue d'origine et une émoticône correspondant à l'émotion détectée.un exemple:
+              {'text': "c'est incroiyable.", 'traduction': "it's incredible.", 'emotion': 'admiration', 'langue': 'fr', 'emoticon': '😍'}
+              
     """
     trad=translate_to_en(text)
     emo=emotion_analysis(trad['textTraduie'])[0]['label']
