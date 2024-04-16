@@ -15,15 +15,15 @@ emotion_analysis = pipeline('sentiment-analysis',
 # Fonction pour traduire un texte en anglais
 def translate_to_en(text=""):
     """
-    Cette fonction prend en entrée un texte en français et le traduit en anglais.
+    Cette fonction prend en entrée un texte et le traduit en anglais.
+    Elle détecte d'abord la langue du texte, puis le traduit en anglais.
 
     Args:
-        text (str): Le texte à traduire en anglais. Par défaut, c'est une chaîne vide.
+        text (str): Le texte à traduire. Par défaut, c'est une chaîne vide.
 
     Returns:
-        str: Le texte traduit en anglais.
+        dict: Un dictionnaire contenant la langue détectée et le texte traduit en anglais.
     """
-    # Détection de la langue du texte en français
     langue=detect(text)
     translated_text = deep_translator.GoogleTranslator(source=langue, target='en').translate(text)
     return {'langue': langue, 'textTraduie':translated_text}
@@ -31,18 +31,20 @@ def translate_to_en(text=""):
 # Fonction pour traduire un texte en anglais et l'analyser pour l'émotion
 def translate_and_analyse(text):
     """
-    Cette fonction traduit un texte en anglais et l'analyse pour déterminer l'émotion dominante.
+    Cette fonction prend un texte en entrée, le traduit en anglais, puis analyse son émotion dominante.
 
     Args:
         text (str): Le texte à analyser.
 
     Returns:
-        dict: Un dictionnaire contenant le label d'émotion et sa probabilité associée.
-        Voici la liste des emotions possible:
-        admiration,amusement,anger,annoyance,approval,caring,confusion,curiosity,desire,disappointment,disapproval,disgust,embarrassment,excitement,fear,gratitude,grief,oy,love,nervousness,optimism,pride,realization,relief,remorse,sadness,surprise,neutral
+        dict: Un dictionnaire contenant le texte d'origine, sa traduction en anglais, l'émotion détectée, 
+              la langue d'origine et une émoticône correspondant à l'émotion détectée.
     """
     trad=translate_to_en(text)
-    return {"emotion" : emotion_analysis(trad['textTraduie'])[0] , "langue" : trad["langue"]}
+    emo=emotion_analysis(trad['textTraduie'])[0]['label']
+    print(type(emo),emo)
+    
+    return {'text':text,'traduction':trad['textTraduie'], "emotion" : emo, "langue" : trad["langue"], 'emoticon':sentiment_to_emoticon(emo)}
 
 def sentiment_to_emoticon(sentiment):
     """
@@ -93,5 +95,3 @@ if __name__ == "__main__":
     # Exemple d'utilisation de la fonction translate_and_analyse avec le texte "Je t'aime."
     emotion_labels = translate_and_analyse("c'est incroiyable.")
     print(emotion_labels)
-    emoticon_emoticon = sentiment_to_emoticon(emotion_labels["emotion"]['label'])
-    print(emoticon_emoticon)
