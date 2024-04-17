@@ -43,7 +43,7 @@ def translate_and_analyse(text):
               {'text': "c'est incroiyable.", 'traduction': "it's incredible.", 'emotion': 'admiration', 'langue': 'fr', 'emoticon': '😍'}
               
     """
-    trad=translate_to_en(text)
+    trad=translate_to_en(text.lower())
     emo=emotion_analysis(trad['textTraduie'])[0]['label']
     #print(type(emo),emo)
     
