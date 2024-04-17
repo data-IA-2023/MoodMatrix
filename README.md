@@ -10,7 +10,7 @@ Cette IA se présente sous la forme d'un chat bot émotionnel qui utilise le mod
 ### Schéma fonctionel de l'application :
 ![](https://github.com/data-IA-2023/MoodMatrix/blob/main/ressource/moodMatrix.png?raw=true)
 
-## Démarche et choix d'outils
+## Démarche et choix des outils
 
 ### Comparaison des outils de chatBot :
 
