@@ -102,15 +102,11 @@ def text_analyse_et_generation ( texte, idConversation, dateHistorique ) :
 
 
 # test :
-# """
-# dict_new_data = { "texte" : "Je suis très triste aujourd'huis", "sentiment" : "negatif", "resultat" : "Pour quoi ?", "feedBack" : True, 
-#                  "statusAnalys" : "success", "codeErrorAnalys" : "", "statusChatBot" : "success", 
-#                  "codeErrorChatBot" : "", "statusResult" : "success", "codeErrorResult" : "" }
-# """
-idConversation = 1
-dateHistorique = datetime.datetime.today()
-texte = "Aujourd'hui , je stress, j'ai un entretien à 14h."
-text_analyse_et_generation ( texte, idConversation, dateHistorique ) 
+
+# idConversation = 1
+# dateHistorique = datetime.datetime.today()
+# texte = "Aujourd'hui , je stress, j'ai un entretien à 14h."
+# text_analyse_et_generation ( texte, idConversation, dateHistorique ) 
 
 # =======================    réccupère infos de la base de donnée     =======================
 
