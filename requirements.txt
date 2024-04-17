@@ -1,0 +1,7 @@
+TensorFlow
+tf-keras
+deep_translator
+transformers
+langdetect
+pandas
+SQLAlchemy
