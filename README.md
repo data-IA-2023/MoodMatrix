@@ -1,6 +1,6 @@
 # MoodMatrix
 
-Pour la documentation, allez sur le wiki : [Wiki](https://github.com/data-IA-2023/MoodMatrix/wiki)
+Pour la documentation, allez sur le wiki : [Wiki](https://github.com/data-IA-2023/MoodMatrix/wiki/Accueil)
 
 ## Présentation
 
