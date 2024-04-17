@@ -130,9 +130,9 @@ def get_df_bd_historique ( id_conversation ) :
 
 # test
 # df_historique = None
-# df_historique = get_bd ( "historique", session, engine )
+# df_historique = get_df_bd_historique ( 1 )
 # print('df_historique :', df_historique)
 
 # df_monitoring = None
-# df_monitoring = get_bd ( "monitoring", session, engine )
+# df_monitoring = get_df_bd_monitoring ()
 # print('df_monitoring :', df_monitoring)
