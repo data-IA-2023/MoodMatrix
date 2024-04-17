@@ -13,6 +13,8 @@ attribus :
     sentiment = Column(VARCHAR())
     resultat = Column(VARCHAR())
     feedBack = Column(Boolean)
+    idConversation = Column(Integer)
+    dateHistorique = Column(DateTime)
     idMonitoring = Column(Integer, ForeignKey('dbo.monitoring.idMonitoring'))
 =========================================
 classe :
@@ -32,7 +34,7 @@ attribus :
 # importation :
 # =========================================
 
-from sqlalchemy import ForeignKey, Column, Integer, VARCHAR, Boolean, String, create_engine
+from sqlalchemy import ForeignKey, Column, Integer, VARCHAR, Boolean, String, create_engine, DateTime
 from sqlalchemy.orm import declarative_base, sessionmaker, relationship
 import os
 
@@ -77,6 +79,8 @@ class Historiques ( Base ):
     sentiment = Column(VARCHAR())
     resultat = Column(VARCHAR())
     feedBack = Column(Boolean)
+    idConversation = Column(Integer)
+    dateHistorique = Column(DateTime)
     idMonitoring = Column(Integer, ForeignKey('monitoring.idMonitoring'))  # Spécification du schéma
 
     # Définir la relation avec la table "Monitoring"

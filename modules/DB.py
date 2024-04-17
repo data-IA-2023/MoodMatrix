@@ -5,7 +5,8 @@ classe :
 methode :
     connectBd() => sortie : return dict_connection ou print error
     set_bd ( dict_new_data, session ) => entrée : dict, fonction : ajout dans la bd
-    get_bd ( value, session, engine ) => sortie : return df ou print error, fonction : réccupaire dans la bd
+    get_bd_monitoring ( session, engine ) => sortie : return df 
+    get_bd_historique ( value, session, engine ) => sortie : return df 
 =========================================
 """
 
@@ -23,6 +24,8 @@ methode :
 #     sentiment = Column(VARCHAR())
 #     resultat = Column(VARCHAR())
 #     feedBack = Column(Boolean)
+#     idConversation = Column(Integer)
+#     dateHistorique = Column(DateTime)
 #     idMonitoring = Column(Integer, ForeignKey('dbo.monitoring.idMonitoring'))
 # =========================================
 # classe :
@@ -51,6 +54,15 @@ import pandas as pd
 # =======================    connection à la base de données    =======================
 
 def connectBd():
+    """
+    fonction qui se connecte à la base de données via le module ORM
+
+    arg :
+        none
+
+    return : 
+        dict avec élément de connection et session sqlalchimy ou une erreur
+    """
     try:
         dict_connection = createsession ()  # dict { engine, session }
         return dict_connection
@@ -65,9 +77,15 @@ def connectBd():
 
 def set_bd ( dict_new_data, session ) :
     """
-    dict_new_data = { texte : "", sentiment : "", resultat : "", feedBack : "", 
-                     statusAnalys : "", codeErrorAnalys : "", statusChatBot : "", 
-                     codeErrorChatBot : "", statusResult : "", codeErrorResult : "" }
+
+    arg :
+        dict_new_data = { texte : "", sentiment : "", resultat : "", feedBack : "", "idConversation" : "", 
+                        "dateHistorique" : "", statusAnalys : "", codeErrorAnalys : "", statusChatBot : "", 
+                        codeErrorChatBot : "", statusResult : "", codeErrorResult : "" }
+
+    return :
+
+
     """
 
     # ========== traitement du monitoring ==========
@@ -93,6 +111,8 @@ def set_bd ( dict_new_data, session ) :
         sentiment = dict_new_data['sentiment'],
         resultat = dict_new_data['resultat'],
         feedBack = dict_new_data['feedBack'],
+        idConversation = dict_new_data['idConversation'],
+        dateHistorique = dict_new_data['dateHistorique'],
         idMonitoring = id_monitoring
     )
 
@@ -110,24 +130,32 @@ def set_bd ( dict_new_data, session ) :
 
 # =======================    réccupère la base de données    =======================
 
-def get_bd ( value, session, engine ) :
-
-    if value == "monitoring" :
-        df_query = session.query(Monitoring)
-        
-        df = pd.read_sql( sql=df_query.statement, con=engine )
-
-        return df
+def get_bd_monitoring ( session, engine ) : 
+    """
     
-    elif value == "historique" :
-        df_query = session.query(Historiques)
-        
-        df = pd.read_sql( sql=df_query.statement, con=engine )
+    arg :
+        la session et la connextion pour la BDD
 
-        return df
+    return :
+        un dataframe des données de la BDD
+    """
+    df_query = session.query(Monitoring)
+    df = pd.read_sql( sql=df_query.statement, con=engine )
+    return df
+
+def get_bd_historique ( value, session, engine ) :
+    """
     
-    else :
-        print("error : la requette n'ai pas valide")
+    arg :
+        la session et la connextion pour la BDD
+
+    return :
+        un dataframe des données de la BDD
+    """
+    df_query = session.query(Historiques)
+    df = pd.read_sql( sql=df_query.statement, con=engine ).filter_by(idConversation=value)
+    return df
+
 
 # teste :
 # dict = createsession ()
