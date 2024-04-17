@@ -4,6 +4,8 @@ classe :
     main
 methode :
     text_analyse_et_generation ( texte, idConversation, dateHistorique ) => return : dict = {'reponce': '', 'emotion': '', 'emoticon': ''}
+    get_df_bd_monitoring () => return dataframe
+    get_df_bd_historique ( id_conversation ) => return dataframe
 =========================================
 """
 
