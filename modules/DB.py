@@ -152,8 +152,8 @@ def get_bd_historique ( value, session, engine ) :
     return :
         un dataframe des données de la BDD
     """
-    df_query = session.query(Historiques)
-    df = pd.read_sql( sql=df_query.statement, con=engine ).filter_by(idConversation=value)
+    df_query = session.query(Historiques).filter_by(idConversation=value)
+    df = pd.read_sql( sql=df_query.statement, con=engine )
     return df
 
 
