@@ -86,7 +86,7 @@ def reponce_generator ( dict_analyse ) :
         if emo_input['emotion'] == 'neutre':
             final_input = emo_input['text']
         else: 
-            final_input = emo_input['text'] + '\n' + f'je me sens {emo_input['emotion']}'
+            final_input = emo_input['text'] + '\n' + f'je me sens {emo_input["emotion"]}'
         conversation_history += f"\nUtilisateur: {final_input}\nAssistant: "
         response = query({
             "inputs": conversation_history,
