@@ -100,7 +100,7 @@ def text_analyse_et_generation ( texte, idConversation, dateHistorique ) :
     set_bd ( dict_resultat, session)
 
     # =======================    return     =======================
-    return { "resultat" : text_generator, "sentiment" : dict_analyse['emotion'], "emoticon" : dict_analyse['emoticon'] }
+    return { "resultat" : text_generator, "sentiment" : dict_resultat['sentiment'], "emoticon" : dict_analyse['emoticon'] }
 
 
 # test :

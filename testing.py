@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 import datetime
 
 from main import text_analyse_et_generation, get_df_bd_monitoring, get_df_bd_historique
@@ -29,7 +29,8 @@ def main():
 @app.route('/refresh', methods=['GET', 'POST'])
 def refresh():
     chat_history.clear()  # Clear the chat history
-    return render_template('index.html', chat_history=chat_history)
+    return redirect(url_for('main'))
+    # return render_template('index.html', chat_history=chat_history)
 
 if __name__ == "__main__":
     app.run(debug=True)

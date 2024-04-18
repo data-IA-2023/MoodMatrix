@@ -134,8 +134,8 @@ def translate_emotion_to_fr(emotion):
         "surprise": "surprise",
         "neutral": "neutre"
     }
-
-    return emotion_dict.get(emotion.lower(), None)
+    try : return emotion_dict[emotion.lower()]
+    except : return None
 
 
 if __name__ == "__main__":
