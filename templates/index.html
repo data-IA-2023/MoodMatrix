@@ -43,9 +43,9 @@
     {% for message in chat_history %}
         <div class="chat-container">
             {% if message['sender'] == 'user' %}
-                <div class="user-message">{{ message['user'] }} {{ message['emoji'] }}</div>
+                <div class="user-message">{{ message['user'] }} {{ message['emoticon'] }}</div>
             {% else %}
-                <div class="bot-message">{{ message['user'] }} {{ message['emoji'] }}</div>
+                <div class="bot-message">{{ message['user'] }} {{ message['emoticon'] }}</div>
             {% endif %}
             <div class="feelings">{{ message['feelings'] }}</div>
             <div class="timestamp">{{ message['time'] }}</div>
