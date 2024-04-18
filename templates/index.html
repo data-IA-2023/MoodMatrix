@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emobot</title>
+    <style>
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+        }
+        .user-message {
+            align-self: flex-end;
+            max-width: 70%;
+            background-color: #dcf8c6;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 5px;
+        }
+        .bot-message {
+            align-self: flex-start;
+            max-width: 70%;
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 5px;
+        }
+        .timestamp {
+            font-size: 12px;
+            color: #888888;
+            margin-top: 5px;
+        }
+        .feelings {
+            font-style: italic;
+            color: #888888;
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Emobot</h1>
+    {% for message in chat_history %}
+        <div class="chat-container">
+            {% if message['sender'] == 'user' %}
+                <div class="user-message">{{ message['user'] }} ({{ message['emoticon'] }} {{ message['emotion'] }})</div>
+            {% else %}
+                <div class="bot-message">{{ message['user'] }}</div>
+            {% endif %}
+            <div class="feelings">{{ message['feelings'] }}</div>
+            <div class="timestamp">{{ message['time'] }}</div>
+        </div>
+    {% endfor %}
+    <form method="POST">
+        <input type="text" name="user_input" placeholder="You">
+        <input type="submit" value="Send">
+    </form>
+    <form method="POST" action="/refresh">
+        <input type="hidden" name="refresh" value="true">
+        <input type="submit" value="Refresh">
+    </form>
+</body>
+</html>
