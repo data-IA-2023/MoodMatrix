@@ -6,3 +6,5 @@ keras
 SQLAlchemy
 huggingface-hub
 transformers
+deep_translator
+langdetect
