@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chatbot</title>
+    <title>Emobot</title>
     <style>
         .chat-container {
             display: flex;
@@ -39,7 +39,7 @@
     </style>
 </head>
 <body>
-    <h1>Chatbot</h1>
+    <h1 style="text-align: center;">Emobot</h1>
     {% for message in chat_history %}
         <div class="chat-container">
             {% if message['sender'] == 'user' %}
