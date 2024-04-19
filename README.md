@@ -4,7 +4,7 @@ Pour la documentation, allez sur le wiki : [Wiki](https://github.com/data-IA-202
 
 ## Présentation
 
-Dans le cadre de la création d’un robot capable de percevoir et de réagir aux émotions des humains, nous avons créé une IA capable d'interpréter les émotions à partir d’un texte.
+Dans le cadre de la création d’un robot capable de percevoir et de réagir aux émotions humaines, nous avons créé une IA capable d'interpréter les émotions à partir d’un texte.
 Cette IA se présente sous la forme d'un chat bot émotionnel qui utilise le modèle de classification émotionnelle EmoRoBERTa et le LLM Mistral 7B.
 
 ### Schéma fonctionel de l'application :
